@@ -43,8 +43,12 @@ Route::post('/update/post/{id}',[PostController::class,'updatePostByID'])
 ->middleware('auth:api');
 Route::post('/update/user/post/{user_id}',[PostController::class,'updatePostByUserID'])->middleware('auth:api');
 Route::delete('/post/{id}',[PostController::class,'destroy'])->middleware('auth:api');
+Route::get('/post/{id}',[PostController::class,'getPostByID'])->middleware('auth:api');
 
 //********** Comment routes*/
 
 Route::get('/comments',[CommentController::class,'getAllComments'])->middleware('auth:api');
 Route::post('/make/comment',[CommentController::class,'makeComment'])->middleware('auth:api');
+
+
+

@@ -116,6 +116,8 @@ class PostController extends Controller
     public function getPostByID(Request $request)
     {
         $post = Post::find($request->id);
+        $user=$this->getUser($post);
+        $comment=$this->getPostComments($post);
         return response()->json([
             'status'=>200,
             'message'=>'Retrieved Success',
@@ -154,7 +156,7 @@ class PostController extends Controller
         return response()->json([
             'status'=>200,
             'message'=>'Updated successfully',
-            'data'=>new UserResource($post)
+            'data'=>new PostResource($post)
         ]);
         
     }
@@ -194,6 +196,9 @@ class PostController extends Controller
     {
         $post->delete();
 
-        return response(['message' => 'Deleted']);
+        return response([
+            'status'=>200,
+            'message'=>'Post deleted',
+        ]);
     }
 }
